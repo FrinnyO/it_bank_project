@@ -11,3 +11,8 @@ def mask_account_card(number: str) -> str:
                 break
         card_name_str = ''.join(card_name)
         return f'{card_name_str}{number[-16:-12]} {number[-12:-10]}{'*' * 2} {'*' * 4} {number[-4::]}'
+
+
+def get_date(date: str) -> str:
+    """Returns common date write as string"""
+    return f'{date[8:10]}.{date[5:7]}.{date[0:4]}'
