@@ -1,16 +1,22 @@
+import masks
+
+
 def mask_account_card(number: str) -> str:
     """Returns masked card or account number as string"""
     if "Счет" in number:
-        return f"{number[0:5]}{'*' * 2}{number[-4::]}"
+        account_number = number[5:]
+        return f"{number[0:5]}{masks.get_mask_account(account_number)}"
     else:
         card_name = []
         for symbol in number:
             if symbol not in ["1", "2", "3", "4", "5", "6", "7", "8", "9"]:
                 card_name.append(symbol)
             else:
+                symbol_index = number.index(symbol)
+                number = number[symbol_index:]
                 break
         card_name_str = "".join(card_name)
-        return f"{card_name_str}{number[-16:-12]} {number[-12:-10]}{'*' * 2} {'*' * 4} {number[-4::]}"
+        return f"{card_name_str}{masks.get_mask_card_number(number)}"
 
 
 def get_date(date: str) -> str:
