@@ -5,7 +5,7 @@ def filter_by_state(list_of_dict: list, state: str = "EXECUTED") -> list:
     """Returns a list of dictionaries with a specific key"""
     list_of_dict_sorted = []
     for i in list_of_dict:
-        if dict["state"] == state:
+        if i["state"] == state:
             list_of_dict_sorted.append(i)
     return list_of_dict_sorted
 
