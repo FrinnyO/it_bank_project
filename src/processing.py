@@ -18,4 +18,3 @@ def sort_by_date(list_of_dict: list, sorter: bool = True) -> list | None:
         return []
     sorted_list = sorted(list_of_dict, key=itemgetter("date"), reverse=sorter)
     return sorted_list
-

@@ -3,7 +3,7 @@ from src import masks
 
 def mask_account_card(number: str) -> str | None:
     """Returns masked card or account number as string"""
-    if number.isalpha() or number.isdigit() or number.isspace() or number == '':
+    if number.isalpha() or number.isdigit() or number.isspace() or number == "":
         return None
     if "Счет" in number:
         account_number = number[5:]
@@ -28,9 +28,8 @@ def mask_account_card(number: str) -> str | None:
 
 def get_date(date: str) -> str | None:
     """Returns common date write as string"""
-    if date.isdigit() or date.isspace() or date.isalpha() or date == '':
+    if date.isdigit() or date.isspace() or date.isalpha() or date == "":
         return None
     if len(date) == 26:
         return f"{date[8:10]}.{date[5:7]}.{date[0:4]}"
     return None
-
