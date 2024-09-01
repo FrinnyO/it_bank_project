@@ -11,5 +11,5 @@ def get_transactions_and_descriptions(file_name="operations.json") -> dict:
             else:
                 operations = json.load(f)
         return operations
-    except FileNotFoundError:
+    except FileNotFoundError or json.JSONDecodeError:
         return []
