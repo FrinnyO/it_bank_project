@@ -52,3 +52,34 @@ def test_sort_by_date_3(base_list_of_dict):
 
 def test_sort_by_date_4():
     assert processing.sort_by_date([]) == []
+
+
+def test_get_transactions_by_description_not_found(base_list_of_transactions):
+    assert processing.get_transactions_by_description(base_list_of_transactions, "Учеба") == []
+
+
+def test_get_transactions_by_description_success(base_list_of_transactions):
+    assert processing.get_transactions_by_description(base_list_of_transactions, "карт") == [
+        {
+            "id": 895315941,
+            "state": "EXECUTED",
+            "date": "2018-08-19T04:27:37.904916",
+            "operationAmount": {"amount": "56883.54", "currency": {"name": "USD", "code": "USD"}},
+            "description": "Перевод с карты на карту",
+            "from": "Visa Classic 6831982476737658",
+            "to": "Visa Platinum 8990922113665229",
+        }
+    ]
+
+
+def test_count_operation_categories_not_found(base_list_of_transactions):
+    assert processing.count_operation_categories(base_list_of_transactions, ["Оплата учебы", "Выплата кредита"]) == {}
+
+
+def test_count_operation_categories_found(base_list_of_transactions):
+    assert processing.count_operation_categories(
+        base_list_of_transactions, ["Перевод организации", "Перевод со счета на счет"]
+    ) == {
+        "Перевод организации": 2,
+        "Перевод со счета на счет": 2,
+    }

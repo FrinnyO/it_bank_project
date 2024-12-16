@@ -1,4 +1,4 @@
-from typing import Generator, Iterator
+from typing import Generator, Iterator, List
 
 
 def filter_by_currency(transactions: list, currency: str) -> Iterator:
@@ -11,6 +11,12 @@ def transaction_descriptions(transactions: list) -> Iterator:
     """Функция принимает список словарей с транзакциями
     и возвращает описание каждой операции по очереди."""
     return map(lambda x: x["description"], transactions)
+
+
+def filter_by_currency_for_csv_excel(transactions: List[dict], currency: str) -> Iterator:
+    """Функция принимает на вход список словарей, представляющих транзакции.
+    Возвращает транзакции отфильтрованные по заданной валюте для csv и excel файлов."""
+    return filter(lambda x: x["currency_code"] == currency, transactions)
 
 
 def card_number_generator(start: int, stop: int) -> Generator:
