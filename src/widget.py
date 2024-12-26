@@ -1,4 +1,4 @@
-from src import masks
+from src.masks import get_mask_account, get_mask_card_number
 
 
 def mask_account_card(number: str) -> str | None:
@@ -9,7 +9,7 @@ def mask_account_card(number: str) -> str | None:
         account_number = number[5:]
         if len(account_number) != 20:
             return None
-        return f"{number[0:5]}{masks.get_mask_account(account_number)}"
+        return f"{number[0:5]}{get_mask_account(account_number)}"
     else:
         card_name = []
         for symbol in number:
@@ -22,7 +22,7 @@ def mask_account_card(number: str) -> str | None:
                     return None
                 break
         card_name_str = "".join(card_name)
-        return f"{card_name_str}{masks.get_mask_card_number(number)}"
+        return f"{card_name_str}{get_mask_card_number(number)}"
     return None
 
 
